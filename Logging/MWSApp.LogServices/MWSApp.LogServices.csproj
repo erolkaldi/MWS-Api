@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\Common\MWSApp.CommonModels\MWSApp.CommonModels.csproj" />
     <ProjectReference Include="..\MWSApp.LogContexts\MWSApp.LogContexts.csproj" />
     <ProjectReference Include="..\MWSApp.LogEntities\MWSApp.LogEntities.csproj" />
+    <ProjectReference Include="..\MWSApp.LogModels\MWSApp.LogModels.csproj" />
   </ItemGroup>
 
 </Project>

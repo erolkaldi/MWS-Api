@@ -23,13 +23,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MWSApp.CommonInterfaces", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{05F99AA1-8520-49AD-82C3-89C639AA8F12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWSApp.LogApi", "Logging\MWSApp.LogApi\MWSApp.LogApi.csproj", "{C5F6A837-6148-4AA6-B1B3-D0D961042F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MWSApp.LogApi", "Logging\MWSApp.LogApi\MWSApp.LogApi.csproj", "{C5F6A837-6148-4AA6-B1B3-D0D961042F05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWSApp.LogContexts", "Logging\MWSApp.LogContexts\MWSApp.LogContexts.csproj", "{9A0BAB5B-4619-4B95-8877-1A0C0E419144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MWSApp.LogContexts", "Logging\MWSApp.LogContexts\MWSApp.LogContexts.csproj", "{9A0BAB5B-4619-4B95-8877-1A0C0E419144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWSApp.LogEntities", "Logging\MWSApp.LogEntities\MWSApp.LogEntities.csproj", "{FD4E20F1-D219-41DF-9A14-BE533859410E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MWSApp.LogEntities", "Logging\MWSApp.LogEntities\MWSApp.LogEntities.csproj", "{FD4E20F1-D219-41DF-9A14-BE533859410E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWSApp.LogServices", "Logging\MWSApp.LogServices\MWSApp.LogServices.csproj", "{D6D497D0-5064-4641-A751-FBAF2F920850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MWSApp.LogServices", "Logging\MWSApp.LogServices\MWSApp.LogServices.csproj", "{D6D497D0-5064-4641-A751-FBAF2F920850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MWSApp.LogModels", "Logging\MWSApp.LogModels\MWSApp.LogModels.csproj", "{21951853-D08E-4E64-9895-23F3EFD02B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{D6D497D0-5064-4641-A751-FBAF2F920850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D497D0-5064-4641-A751-FBAF2F920850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6D497D0-5064-4641-A751-FBAF2F920850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21951853-D08E-4E64-9895-23F3EFD02B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21951853-D08E-4E64-9895-23F3EFD02B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21951853-D08E-4E64-9895-23F3EFD02B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21951853-D08E-4E64-9895-23F3EFD02B24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{9A0BAB5B-4619-4B95-8877-1A0C0E419144} = {05F99AA1-8520-49AD-82C3-89C639AA8F12}
 		{FD4E20F1-D219-41DF-9A14-BE533859410E} = {05F99AA1-8520-49AD-82C3-89C639AA8F12}
 		{D6D497D0-5064-4641-A751-FBAF2F920850} = {05F99AA1-8520-49AD-82C3-89C639AA8F12}
+		{21951853-D08E-4E64-9895-23F3EFD02B24} = {05F99AA1-8520-49AD-82C3-89C639AA8F12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0B61D3A-53E1-4AAD-8871-3BA00696892F}
