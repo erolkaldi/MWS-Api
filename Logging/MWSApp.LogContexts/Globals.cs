@@ -1,0 +1,16 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using System.Linq.Expressions;
+global using Microsoft.EntityFrameworkCore;
+global using MWSApp.LogEntities.Entities;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Dapper;
+global using MassTransit;
+global using MWSApp.CommonModels.Entities;
+global using MWSApp.CommonInterfaces;
+global using MWSApp.CommonModels.Models;
+global using Microsoft.Extensions.Options;
