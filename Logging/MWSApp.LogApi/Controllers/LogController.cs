@@ -1,9 +1,11 @@
 ﻿
 
+
 namespace MWSApp.LogApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class LogController : ControllerBase
     {
         private readonly IMediator _mediator;

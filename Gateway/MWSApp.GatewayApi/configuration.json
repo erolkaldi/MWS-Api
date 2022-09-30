@@ -13,7 +13,7 @@
       "UpstreamHttpMethod": [ "Get", "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/auth/gettoken",
+      "DownstreamPathTemplate": "/api/account/gettoken",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {

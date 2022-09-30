@@ -10,3 +10,7 @@ global using MWSApp.CommonModels.Models;
 global using MWSApp.IdentityEntites.Entities;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
+global using MWSApp.IdentityModels.Dtos;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.IdentityModel.Tokens;

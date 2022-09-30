@@ -1,8 +1,11 @@
 ﻿
+
+
 namespace MWSApp.CompanyApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class CompanyController : ControllerBase
     {
         private readonly IMediator _mediator;

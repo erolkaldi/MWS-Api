@@ -9,6 +9,7 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
         public string FullName { get; set; } = "";
         public string Password { get; set; } = "";
         public string ConfirmPassword { get; set; } = "";
+        public Guid? CompanyId { get; set; }
     }
   
     public class CreateUserCommandHandler : IRequestHandler<RegisterUserCommand, ActionResponse>
@@ -25,6 +26,12 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
             ActionResponse response = new();
             try
             {
+                if (request.Password != request.ConfirmPassword)
+                {
+                    response.ResponseType = ResponseType.Error;
+                    response.Message = "Confirm password fail";
+                    return response;
+                }
                 AppUser user = new() { Id = Guid.NewGuid().ToString(), UserName = request.Name, FullName = request.FullName, Email = request.Email };
                 var result = await _userManager.CreateAsync(user, request.Password);
 
