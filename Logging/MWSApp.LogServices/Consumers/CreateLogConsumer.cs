@@ -18,6 +18,7 @@ namespace MWSApp.LogServices.Consumers
             {
                 CompanyLog log = _mapper.Map<CompanyLog>(context.Message);
                 log.Id = Guid.NewGuid();
+                log.ActionDate = log.ActionDate.ToLocalTime();
                 await _repository.AddAsync(log);
                 await _repository.SaveChangesAsync(); 
             }
