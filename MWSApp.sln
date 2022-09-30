@@ -38,9 +38,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MWSApp.IdentityApi", "Identity\MWSApp.IdentityApi\MWSApp.IdentityApi.csproj", "{9E090545-AE05-4B81-883F-E65060109A4D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{73370F1D-A251-4171-857D-BF8CD97F101E}"
-	ProjectSection(SolutionItems) = preProject
-		ReadMe.txt = ReadMe.txt
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MWSApp.GatewayApi", "Gateway\MWSApp.GatewayApi\MWSApp.GatewayApi.csproj", "{B712E955-970D-4BD3-9453-E852F75AE990}"
 EndProject
