@@ -11,3 +11,8 @@ global using MWSApp.CommonInterfaces;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
 global using MWSApp.LogModels.Dtos;
+global using AutoMapper;
+global using MWSApp.LogServices.Features.CompanyLogs.Commands;
+global using MassTransit;
+global using MWSApp.LogServices.Consumers;
+global using Microsoft.Extensions.Configuration;

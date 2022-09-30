@@ -1,8 +1,4 @@
 ﻿
-
-using MWSApp.CompanyServices.Features.Companies.Commands;
-using MWSApp.CompanyServices.Features.Companies.Queries;
-
 namespace MWSApp.CompanyApi.Controllers
 {
     [Route("api/[controller]/[action]")]

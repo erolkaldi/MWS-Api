@@ -1,20 +1,19 @@
 ﻿
 
-using Microsoft.Extensions.Options;
-using MWSApp.CommonModels.Models;
+
 
 namespace MWSApp.CompanyContexts
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         protected CompanyDbContext _dbContext;
-        //private readonly IBus _bus;
-        private readonly RabbitMQSetting _rabbitMQSetting;
-        public Repository(CompanyDbContext dbContext,IOptions<RabbitMQSetting> rabbitMQSetting)
+        private readonly IBus _bus;
+        private RabbitMQSetting _rabbitMQSetting=new RabbitMQSetting();
+        public Repository(CompanyDbContext dbContext,IConfiguration rabbitMQSetting,IBus bus)
         {
             _dbContext = dbContext;
-            //_bus = bus;
-            _rabbitMQSetting = rabbitMQSetting.Value;
+            _bus = bus;
+            rabbitMQSetting.GetSection("RabbitMQSetting").Bind(_rabbitMQSetting);
         }
 
         public async Task<T> AddAsync(T entity)
@@ -132,19 +131,26 @@ namespace MWSApp.CompanyContexts
                             if (originalValue != updatedValue)
                             {
                                 //TODO : User ve CompanyId claimsden gelecek
-                                LogQueueMessage log = new LogQueueMessage();
-                                log.OldValue = originalValue;
-                                log.NewValue = updatedValue;
-                                log.FieldName = property.Name;
-                                log.TableName = entity.Entity.GetType().Name;
-                                log.ActionDate = now;
-                                log.ProjectName = "Company";
-                                log.UserName = "";
-                                log.TableId = id;
-                                log.CompanyId = Guid.Empty;
-                                //Uri uri = new Uri(_rabbitMQSetting.RabbitUri);
-                                //var endPoint = await _bus.GetSendEndpoint(uri);
-                                //endPoint.Send(log);
+                                try
+                                {
+                                    LogQueueMessage log = new LogQueueMessage();
+                                    log.OldValue = originalValue;
+                                    log.NewValue = updatedValue;
+                                    log.FieldName = property.Name;
+                                    log.TableName = entity.Entity.GetType().Name;
+                                    log.ActionDate = now;
+                                    log.ProjectName = "Company";
+                                    log.UserName = "";
+                                    log.TableId = id;
+                                    log.CompanyId = Guid.Empty;
+                                    Uri uri = new Uri(_rabbitMQSetting.RabbitUri+"/"+_rabbitMQSetting.RabbitQueue);
+                                    var endPoint = await _bus.GetSendEndpoint(uri);
+                                    endPoint.Send(log);
+                                }
+                                catch (Exception excc)
+                                {
+
+                                }
                             }
                         }
                     }

@@ -14,3 +14,4 @@ global using MassTransit;
 global using MWSApp.CommonModels.Entities;
 global using MWSApp.CommonInterfaces;
 global using MWSApp.CommonModels.Models;
+global using Microsoft.Extensions.Options;

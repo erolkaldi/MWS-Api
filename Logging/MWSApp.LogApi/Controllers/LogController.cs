@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MWSApp.LogServices.Features.CompanyLogs.Queries;
+﻿
 
 namespace MWSApp.LogApi.Controllers
 {

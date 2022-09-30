@@ -4,8 +4,8 @@ namespace MWSApp.CompanyServices.Features.Companies.Commands
 {
     public class CreateCompanyCommand : IRequest<ActionResponse>
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public string Name { get; set; } = "";
+        public string Email { get; set; } = "";
     }
     public class CreateCompanyHandler : IRequestHandler<CreateCompanyCommand, ActionResponse>
     {
