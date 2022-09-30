@@ -1,11 +1,13 @@
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
-
+builder.Services.RegisterServices();
+builder.Services.RegisterDbContextServices(builder.Configuration);
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.Services.CreateScope().MigrateDatabase();
 
 app.UseAuthorization();
 
