@@ -36,6 +36,12 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
                     response.Message = "User not found";
                     return response;
                 }
+                if (!user.EmailConfirmed)
+                {
+                    response.Success = false;
+                    response.Message = "Please confirm email first.We sent you a confirmation email";
+                    return response;
+                }
                 var sign =await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
                 if (!sign.Succeeded)
                 {

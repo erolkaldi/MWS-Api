@@ -12,6 +12,7 @@ namespace MWSApp.LogContexts
             base.ChangeTracker.AutoDetectChangesEnabled = true;
         }
         public DbSet<CompanyLog> CompanyLogs { get; set; }
+        public DbSet<MailLog> MailLogs { get; set; }
         public int Execute(string query, object parameters)
         {
             return Database.GetDbConnection().Execute(query, parameters);

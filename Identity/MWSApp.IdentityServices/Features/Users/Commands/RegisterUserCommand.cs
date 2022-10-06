@@ -15,10 +15,15 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
     public class CreateUserCommandHandler : IRequestHandler<RegisterUserCommand, ActionResponse>
     {
         readonly UserManager<AppUser> _userManager;
+        private RabbitMQSetting _rabbitMQSetting = new RabbitMQSetting();
 
-        public CreateUserCommandHandler(UserManager<AppUser> userManager)
+        private readonly IBus _bus;
+
+        public CreateUserCommandHandler(UserManager<AppUser> userManager, IConfiguration configuration, IBus bus)
         {
             _userManager = userManager;
+            configuration.GetSection("RabbitMQSetting").Bind(_rabbitMQSetting);
+            _bus = bus;
         }
 
         public async Task<ActionResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -38,6 +43,15 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
                 if (result.Succeeded)
                 {
                     response.ResponseType = ResponseType.OK;
+                    MailQueueMessage message = new MailQueueMessage();
+                    message.Subject = "Wellcome to MWS App world";
+                    message.To = request.Email;
+                    message.Body = "Merhaba " + request.FullName + "\r\n";
+                    message.Body += "Lütfen alttaki linke tıklayarak aktivasyonunuzu tamamlayın.\r\n";
+                    message.Body += "http://localhost:5555/api/public/confirmemail?Id=" + user.Id;
+                    Uri uri = new Uri(_rabbitMQSetting.RabbitUri + "/" + _rabbitMQSetting.MailQueue);
+                    var endPoint = await _bus.GetSendEndpoint(uri);
+                    endPoint.Send(message);
                 }
                 else
                 {

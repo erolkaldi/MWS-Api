@@ -7,13 +7,9 @@ namespace MWSApp.LogContexts
     public class Repository<T> : IRepository<T> where T : MainBase
     {
         protected LogDbContext _dbContext;
-        //private readonly IBus _bus;
-        private readonly RabbitMQSetting _rabbitMQSetting;
-        public Repository(LogDbContext dbContext,IOptions<RabbitMQSetting> rabbitMQSetting)
+        public Repository(LogDbContext dbContext)
         {
             _dbContext = dbContext;
-            //_bus = bus;
-            _rabbitMQSetting = rabbitMQSetting.Value;
         }
 
         public async Task<T> AddAsync(T entity)
