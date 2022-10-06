@@ -1,5 +1,8 @@
 ﻿
 
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
 namespace MWSApp.CompanyContexts
 {
     public static class DbContextServiceRegistration
@@ -32,6 +35,8 @@ namespace MWSApp.CompanyContexts
 
             });
             services.Configure<RabbitMQSetting>(c=> configuration.GetSection("RabbitMQSetting"));
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
 

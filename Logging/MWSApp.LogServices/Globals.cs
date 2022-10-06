@@ -16,3 +16,5 @@ global using MWSApp.LogServices.Features.CompanyLogs.Commands;
 global using MassTransit;
 global using MWSApp.LogServices.Consumers;
 global using Microsoft.Extensions.Configuration;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.DependencyInjection.Extensions;

@@ -9,17 +9,19 @@ namespace MWSApp.CompanyContexts
         protected CompanyDbContext _dbContext;
         private readonly IBus _bus;
         private RabbitMQSetting _rabbitMQSetting=new RabbitMQSetting();
-        public Repository(CompanyDbContext dbContext,IConfiguration rabbitMQSetting,IBus bus)
+        private readonly IUserRepository _userRepository;
+        public Repository(CompanyDbContext dbContext,IConfiguration rabbitMQSetting,IBus bus,IUserRepository userRepository)
         {
             _dbContext = dbContext;
             _bus = bus;
             rabbitMQSetting.GetSection("RabbitMQSetting").Bind(_rabbitMQSetting);
+            _userRepository = userRepository;
         }
 
         public async Task<T> AddAsync(T entity)
         {
             entity.CreateDate = DateTime.Now;
-            //TODO : CreateUser claimsden gelecek
+            entity.CreateUser = _userRepository.User.UserName;
             entity.CreateUser = "";
             await _dbContext.Set<T>().AddAsync(entity);
             return entity;
@@ -130,7 +132,6 @@ namespace MWSApp.CompanyContexts
                             var updatedValue = entity.CurrentValues[property].ToString();
                             if (originalValue != updatedValue)
                             {
-                                //TODO : User ve CompanyId claimsden gelecek
                                 try
                                 {
                                     LogQueueMessage log = new LogQueueMessage();
@@ -140,9 +141,9 @@ namespace MWSApp.CompanyContexts
                                     log.TableName = entity.Entity.GetType().Name;
                                     log.ActionDate = now;
                                     log.ProjectName = "Company";
-                                    log.UserName = "";
+                                    log.UserName = _userRepository.User.UserName;
                                     log.TableId = id;
-                                    log.CompanyId = Guid.Empty;
+                                    log.CompanyId = _userRepository.User.CompanyId;
                                     Uri uri = new Uri(_rabbitMQSetting.RabbitUri+"/"+_rabbitMQSetting.RabbitQueue);
                                     var endPoint = await _bus.GetSendEndpoint(uri);
                                     endPoint.Send(log);

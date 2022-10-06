@@ -1,4 +1,6 @@
 ﻿
+
+
 namespace MWSApp.LogServices
 {
     public static class ServiceRegistration
@@ -33,7 +35,8 @@ namespace MWSApp.LogServices
                 }));
 
             });
-
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }

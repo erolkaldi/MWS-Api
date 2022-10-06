@@ -15,17 +15,17 @@ namespace MWSApp.LogServices.Features.CompanyLogs.Queries
     public class GetCompanyLogsHandler : IRequestHandler<GetCompanyLogsQuery, ActionResponse<List<LogDto>>>
     {
         IRepository<CompanyLog> _repository;
-        public GetCompanyLogsHandler(IRepository<CompanyLog> repository)
+        private readonly IUserRepository _userRepository;
+        public GetCompanyLogsHandler(IRepository<CompanyLog> repository,IUserRepository userRepository)
         {
             _repository = repository;
+            _userRepository = userRepository;
         }
 
         public async Task<ActionResponse<List<LogDto>>> Handle(GetCompanyLogsQuery request, CancellationToken cancellationToken)
         {
             var response = new ActionResponse<List<LogDto>>();
-            //TODO : claimsden gelecek
-            Guid companyId = Guid.Empty;
-            string query = "Set DateFormat dmy select ActionDate,UserName,TableName,FieldName,OldValue,NewValue from CompanyLogs With(Nolock) where CompanyId='"+companyId.ToString()+"' ";
+            string query = "Set DateFormat dmy select ActionDate,UserName,TableName,FieldName,OldValue,NewValue from CompanyLogs With(Nolock) where CompanyId='"+_userRepository.User.CompanyId.ToString()+"' ";
             if(request.DateBegin!=new DateTime(1, 1, 1))
             {
                 query+="and ActionDate>='"+request.DateBegin.ToString("dd.MM.yyyy HH:mm")+"' ";

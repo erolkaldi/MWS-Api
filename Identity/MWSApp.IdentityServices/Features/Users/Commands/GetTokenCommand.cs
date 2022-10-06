@@ -55,7 +55,9 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("UserId", user.Id),
                         new Claim("DisplayName", user.FullName),
-                        new Claim("Email", user.Email)
+                        new Claim("Email", user.Email),
+                        new Claim("UserName",user.UserName),
+                        new Claim("CompanyId", Guid.NewGuid().ToString()),
                     };
                 response.Expiration = DateTime.UtcNow.AddHours(7);
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
