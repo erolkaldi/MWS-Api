@@ -9,6 +9,7 @@ namespace MWSApp.CompanyContexts
             base.ChangeTracker.AutoDetectChangesEnabled = true;
         }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyUser> CompanyUsers { get; set; }
         public int Execute(string query, object parameters)
         {
             return Database.GetDbConnection().Execute(query, parameters);

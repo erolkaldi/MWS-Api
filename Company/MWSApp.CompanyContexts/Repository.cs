@@ -22,7 +22,6 @@ namespace MWSApp.CompanyContexts
         {
             entity.CreateDate = DateTime.Now;
             entity.CreateUser = _userRepository.User.UserName;
-            entity.CreateUser = "";
             await _dbContext.Set<T>().AddAsync(entity);
             return entity;
         }

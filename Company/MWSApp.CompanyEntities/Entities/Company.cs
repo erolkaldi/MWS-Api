@@ -7,7 +7,7 @@ namespace MWSApp.CompanyEntities.Entities
         public string Name { get; set; } = "";
         [MaxLength(100)]
         public string Email { get; set; } = "";
-
+        public bool Activated { get; set; }
         public Company()
         {
 
