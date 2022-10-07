@@ -7,5 +7,6 @@ namespace MWSApp.IdentityContexts
         public IdentityContext(DbContextOptions options) : base(options)
         {
         }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
     }
 }

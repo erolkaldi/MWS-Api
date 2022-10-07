@@ -17,12 +17,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\MWSApp.CommonModels\MWSApp.CommonModels.csproj" />
+    <ProjectReference Include="..\MWSApp.IdentityContexts\MWSApp.IdentityContexts.csproj" />
     <ProjectReference Include="..\MWSApp.IdentityEntites\MWSApp.IdentityEntites.csproj" />
     <ProjectReference Include="..\MWSApp.IdentityModels\MWSApp.IdentityModels.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Users\Queries\" />
   </ItemGroup>
 
 </Project>
