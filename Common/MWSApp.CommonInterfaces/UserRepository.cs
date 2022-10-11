@@ -25,7 +25,7 @@ namespace MWSApp.CommonInterfaces
                     Email = _httpContextAccessor.HttpContext.User.FindFirst("Email")?.Value ?? "",
                     UserId = new Guid(_httpContextAccessor.HttpContext.User.FindFirst("UserId")?.Value ?? ""),
                     DisplayName = _httpContextAccessor.HttpContext.User.FindFirst("DisplayName")?.Value ?? "",
-                    CompanyId = new Guid(_httpContextAccessor.HttpContext.User.FindFirst("CompanyId")?.Value ?? "")
+                    CompanyId = new Guid(_httpContextAccessor.HttpContext.User.FindFirst("CompanyId")?.Value ?? Guid.Empty.ToString())
                 };
                 return user;
             }
