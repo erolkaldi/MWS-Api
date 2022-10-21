@@ -55,7 +55,7 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
                 }
 
                 response.Success = true;
-                response.CompanyId = user.CompanyId.ToString();
+                response.CompanyId = user.CompanyId == Guid.Empty ? "" : user.CompanyId.ToString();
                 var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
