@@ -37,7 +37,7 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
                     response.Message = "Confirm password fail";
                     return response;
                 }
-                AppUser user = new() { Id = Guid.NewGuid().ToString(), UserName = request.Name, FullName = request.FullName, Email = request.Email };
+                AppUser user = new() { Id = Guid.NewGuid().ToString(), UserName = request.Name, FullName = request.FullName, Email = request.Email,CompanyId=Guid.Empty };
                 var result = await _userManager.CreateAsync(user, request.Password);
 
                 if (result.Succeeded)

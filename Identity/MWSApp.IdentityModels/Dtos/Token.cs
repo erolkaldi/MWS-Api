@@ -15,6 +15,7 @@ namespace MWSApp.IdentityModels.Dtos
         public bool Success { get; set; }
         [JsonIgnore]
         public string RefreshToken { get; set; } = "";
+        public string CompanyId { get; set; } = "";
         public DateTime RefreshTokenExpiration { get; set; }
     }
 }

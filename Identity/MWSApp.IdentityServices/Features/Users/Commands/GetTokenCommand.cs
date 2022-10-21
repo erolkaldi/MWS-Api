@@ -53,7 +53,9 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
                     response.Message = "Password is wrong";
                     return response;
                 }
+
                 response.Success = true;
+                response.CompanyId = user.CompanyId.ToString();
                 var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
@@ -61,7 +63,7 @@ namespace MWSApp.IdentityServices.Features.Users.Commands
                         new Claim("DisplayName", user.FullName),
                         new Claim("Email", user.Email),
                         new Claim("UserName",user.UserName),
-                        new Claim("CompanyId", Guid.Empty.ToString()),
+                        new Claim("CompanyId", user.CompanyId.ToString()),
                     };
                 response.Expiration = DateTime.UtcNow.AddHours(7);
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
