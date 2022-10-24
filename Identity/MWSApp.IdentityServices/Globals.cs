@@ -15,3 +15,4 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.IdentityModel.Tokens;
 global using MassTransit;
+global using MWSApp.CommonInterfaces;

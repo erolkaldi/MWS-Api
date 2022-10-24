@@ -1,5 +1,5 @@
 ﻿
-using MWSApp.IdentityServices.Features.Users.Queries;
+
 
 namespace MWSApp.IdentityApi.Controllers
 {
@@ -63,5 +63,7 @@ namespace MWSApp.IdentityApi.Controllers
             };
             Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
         }
+        [HttpPost]
+        public async Task<IActionResult> UserJoinCompany([FromBody] UserJoinCompanyCommand command) => Ok(await _mediator.Send(command));
     }
 }

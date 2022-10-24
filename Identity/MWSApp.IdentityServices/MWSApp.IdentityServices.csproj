@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\MWSApp.CommonInterfaces\MWSApp.CommonInterfaces.csproj" />
     <ProjectReference Include="..\..\Common\MWSApp.CommonModels\MWSApp.CommonModels.csproj" />
     <ProjectReference Include="..\MWSApp.IdentityContexts\MWSApp.IdentityContexts.csproj" />
     <ProjectReference Include="..\MWSApp.IdentityEntites\MWSApp.IdentityEntites.csproj" />

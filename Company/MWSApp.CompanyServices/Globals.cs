@@ -11,3 +11,5 @@ global using MWSApp.CommonInterfaces;
 global using MWSApp.CompanyModels.Dtos;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.DependencyInjection.Extensions;

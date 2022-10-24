@@ -22,8 +22,18 @@ builder.Services.AddAuthentication(x =>
 });
 builder.Services.RegisterServices(builder.Configuration);
 builder.Services.RegisterDbContextServices(builder.Configuration);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builder => {
+            builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+        });
+});
 var app = builder.Build();
-
+app.UseCors("AllowOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

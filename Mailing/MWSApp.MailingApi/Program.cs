@@ -19,8 +19,19 @@ builder.Services.AddAuthentication(x =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builder => {
+            builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+        });
+});
 builder.Services.RegisterServices(builder.Configuration);
 var app = builder.Build();
+app.UseCors("AllowOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
 

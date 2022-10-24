@@ -17,5 +17,6 @@ namespace MWSApp.IdentityModels.Dtos
         public string RefreshToken { get; set; } = "";
         public string CompanyId { get; set; } = "";
         public DateTime RefreshTokenExpiration { get; set; }
+        public List<string> Roles { get; set; } = new List<string>();
     }
 }

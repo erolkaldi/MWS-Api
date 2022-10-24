@@ -3,6 +3,9 @@
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+
+builder.Services.RegisterServices();
+builder.Services.RegisterDbContextServices(builder.Configuration);
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -20,11 +23,18 @@ builder.Services.AddAuthentication(x =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
-builder.Services.RegisterServices();
-builder.Services.RegisterDbContextServices(builder.Configuration);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builder => {
+            builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+        });
+});
 var app = builder.Build();
-
+app.UseCors("AllowOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
