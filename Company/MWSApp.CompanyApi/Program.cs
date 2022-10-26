@@ -1,10 +1,9 @@
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
-builder.Services.RegisterServices();
+builder.Services.RegisterServices(builder.Configuration);
 builder.Services.RegisterDbContextServices(builder.Configuration);
 builder.Services.AddAuthentication(x =>
 {
@@ -33,6 +32,8 @@ builder.Services.AddCors(options =>
                     .AllowAnyHeader();
         });
 });
+
+
 var app = builder.Build();
 app.UseCors("AllowOrigin");
 app.UseAuthentication();

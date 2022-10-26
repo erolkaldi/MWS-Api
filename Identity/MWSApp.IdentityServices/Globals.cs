@@ -16,3 +16,4 @@ global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.IdentityModel.Tokens;
 global using MassTransit;
 global using MWSApp.CommonInterfaces;
+global using MWSApp.CommonInterfaces.Redis;

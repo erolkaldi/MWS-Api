@@ -13,3 +13,4 @@ global using Microsoft.Extensions.DependencyInjection;
 global using System.Reflection;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using MWSApp.CommonInterfaces.Redis;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace MWSApp.CompanyServices.Features.Companies.Commands
 {
@@ -15,9 +11,12 @@ namespace MWSApp.CompanyServices.Features.Companies.Commands
     public class UpdateCompanyHandler : IRequestHandler<UpdateCompanyCommand, ActionResponse>
     {
         IRepository<Company> _repository;
-        public UpdateCompanyHandler(IRepository<Company> repository)
+        ICacheService _cacheService;
+        public UpdateCompanyHandler(IRepository<Company> repository, ICacheService cacheService)
         {
             _repository = repository;
+            _cacheService = cacheService;
+
         }
 
         public async Task<ActionResponse> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
@@ -29,6 +28,7 @@ namespace MWSApp.CompanyServices.Features.Companies.Commands
             _repository.Update(company);
             await _repository.SaveChangesAsync();
             response.Id = company.Id.ToString();
+            _cacheService.Delete(response.Id);
             return response;
         }
     }
