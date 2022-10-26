@@ -8,9 +8,11 @@ namespace MWSApp.CompanyServices.Features.Companies.Queries
     public class GetCompaniesHandler : IRequestHandler<GetCompaniesQuery, ActionResponse<List<CompanyDto>>>
     {
         IRepository<Company> _repository;
-        public GetCompaniesHandler(IRepository<Company> repository)
+        IUserRepository _userRepository;
+        public GetCompaniesHandler(IRepository<Company> repository, IUserRepository userRepository)
         {
             _repository = repository;
+            _userRepository = userRepository;
         }
 
         public async Task<ActionResponse<List<CompanyDto>>> Handle(GetCompaniesQuery request, CancellationToken cancellationToken)

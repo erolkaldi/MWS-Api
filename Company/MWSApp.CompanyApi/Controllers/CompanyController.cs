@@ -23,7 +23,7 @@ namespace MWSApp.CompanyApi.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCompany([FromBody] UpdateCompanyCommand command) => Ok(await _mediator.Send(command));
         [HttpGet]
-        public async Task<IActionResult> GetUserCompany([FromHeader] string Id) => Ok(await _mediator.Send(new GetUserCompanyQuery() { Id = Id }));
+        public async Task<IActionResult> GetUserCompany() => Ok(await _mediator.Send(new GetUserCompanyQuery()));
         [HttpPost]
         public async Task<IActionResult> UpdateUserCompany([FromBody] UpdateUserCompanyCommand command) => Ok(await _mediator.Send(command));
     }

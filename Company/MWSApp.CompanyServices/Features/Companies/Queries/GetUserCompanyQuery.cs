@@ -26,6 +26,7 @@ namespace MWSApp.CompanyServices.Features.Companies.Queries
         {
             var response = new ActionResponse<UserCompanyInfo>();
 
+            if (string.IsNullOrEmpty(request.Id)) request.Id = _userRepository.User.UserId.ToString();
             var userCompany=await _repository.FirstOrDefaultAsync(x => x.UserId ==Guid.Parse( request.Id));
             if (userCompany == null)
             {
@@ -41,10 +42,7 @@ namespace MWSApp.CompanyServices.Features.Companies.Queries
             }
             var company = await _mediator.Send(new GetCompanyQuery() { Id=userCompany.CompanyId.ToString()});
             response.Data = new () { CompanyId=userCompany.CompanyId,CompanyName=company.Data.Name,Creator=userCompany.Creator};
-            if (_userRepository.User.CompanyId == Guid.Empty)
-            {
-
-            }
+           
             return response;
         }
     }
